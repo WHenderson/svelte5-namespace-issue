@@ -1,10 +1,21 @@
 <script lang="ts">
-    let { children, width, height, ...props } = $props();
+    import type { Snippet } from 'svelte';
+    import type { SVGAttributes } from 'svelte/elements';
 
-    let clientWidth = $state();
-    let clientHeight = $state();
+    type Props =
+        Omit<Partial<SVGAttributes<SVGSVGElement>>, 'children'> &
+        {
+            width?: number | undefined,
+            height?: number | undefined,
+            children?: Snippet
+        };
+
+    let { children, ...props }: Props = $props();
+
+    let clientWidth = $state(props.width ?? 0);
+    let clientHeight = $state(props.height ?? 0);
+
 </script>
-<svg bind:clientWidth bind:clientHeight {width} {height} {...props}>
-    {@render children?.({ color: 'green', n: 10 })}
+<svg bind:clientWidth bind:clientHeight {...props}>
+    {@render children?.()}
 </svg>
-<pre>{JSON.stringify({clientWidth,clientHeight})}</pre>
