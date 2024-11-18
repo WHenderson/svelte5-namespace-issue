@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Svg from "./Svg.svelte";
 
     let namespace = $state();
@@ -9,10 +9,12 @@
 <div>
     <Svg width={100} height={100}>
         {#snippet children({color, n})}
-            {@const cx = 5*n}
-            {@const cy = 5*n}
-            {@const r = 2.5*n}
-            <circle {cx} {cy} {r} fill="black" stroke={color} stroke-width={1} class="xyzzdassdfsasfds" use:ns/>
+            {@const cx = 50}
+            {@const cy = 50}
+            {@const arr = Array.from(new Array(5), (_, i) => ({ r: i + 1 })).reverse()}
+            {#each arr as {r}}
+                <circle {cx} {cy} r={r*n} fill="black" stroke={color} stroke-width={1} class="ssdgyzzda" use:ns/>
+            {/each}
         {/snippet}
     </Svg>
 </div>
