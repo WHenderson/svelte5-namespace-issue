@@ -39,7 +39,7 @@
 <div>
     <Svg>
         {#snippet children()}
-            {@const scaled = [{x: 50,y: 50}]};
+            {@const scaled = [{x: 50,y: 50}]}
 
             {#each scaled as { x, y }}
                 <circle cx={x} cy={y} r={5} class="ssdfasdfasdff" use:ns />
